@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tomato Focus</title>
+<meta name="description" content="Pomodoro con mascota pixel art y una tomatera que crece mientras estudias.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head>
+<body data-mode="focus">
+<header class="top"><div class="wrap row">
+<div class="brand"><span id="logo" aria-hidden="true"></span>Tomato Focus</div>
+<div class="tools"><button class="btn" id="snd" type="button" aria-pressed="true"></button><button class="btn" id="cfg" type="button">Ajustes</button></div>
+</div></header>
+<main class="wrap grid">
+<section class="card" aria-label="Temporizador">
+<div class="confetti" id="confetti" aria-hidden="true"></div>
+<div class="tabs" role="group" aria-label="Modo del temporizador">
+<button class="btn tab" type="button" data-mode="focus"></button><button class="btn tab" type="button" data-mode="short"></button><button class="btn tab" type="button" data-mode="long"></button>
+</div>
+<div class="tommy-row"><div class="frame" id="tommy" role="img" aria-label="Tommy"></div><p class="bubble" id="say" aria-live="polite"></p></div>
+<p class="pill" id="pill"></p>
+<div class="time" id="time" role="timer" aria-live="off">25:00</div>
+<div class="bar" id="bar" role="progressbar" aria-label="Progreso de la sesión" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="meta"><span id="elap"></span><span id="pct"></span></div>
+<div class="ctrl"><button class="btn primary big" id="go" type="button"></button><button class="btn" id="rst" type="button">↻ Reiniciar</button></div>
+<div class="tray"><span id="trayTxt"></span><div class="slots" id="slots"></div></div>
+<p class="hint">Espacio inicia o pausa · R reinicia</p>
+</section>
+<aside class="side">
+<section class="card"><h2>Hoy</h2><dl>
+<div class="stat"><dt>Sesiones</dt><dd id="n">0</dd></div>
+<div class="stat"><dt>Tiempo enfocado</dt><dd id="f">0 min</dd></div>
+<div class="stat"><dt>Racha</dt><dd id="s">0 días</dd></div></dl></section>
+<section class="card garden"><h2 style="margin:0;justify-self:start">Tu tomatera</h2>
+<div class="frame" id="plant" role="img" aria-label="Tomatera"></div>
+<strong id="stage"></strong><p id="total"></p>
+<div class="mini" aria-hidden="true"><i id="grow"></i></div><p id="next"></p></section>
+</aside>
+</main>
+<dialog id="dlg" aria-labelledby="dlgT"><form method="dialog" onsubmit="return false">
+<h2 id="dlgT" style="margin:0">Ajustes</h2>
+<div class="fields">
+<label>Focus (min)<input id="f-focus" type="number" min="1" max="120" step="1" data-name="Focus"></label>
+<label>Descanso corto (min)<input id="f-short" type="number" min="1" max="60" step="1" data-name="Descanso corto"></label>
+<label>Descanso largo (min)<input id="f-long" type="number" min="1" max="120" step="1" data-name="Descanso largo"></label>
+<label>Sesiones antes del largo<input id="f-interval" type="number" min="1" max="12" step="1" data-name="Sesiones"></label>
+</div>
+<div class="sw-row"><span id="l1">Iniciar descansos solo</span><button class="sw" id="sw-autoBreak" type="button" role="switch" aria-labelledby="l1"></button></div>
+<div class="sw-row"><span id="l2">Iniciar focus solo</span><button class="sw" id="sw-autoFocus" type="button" role="switch" aria-labelledby="l2"></button></div>
+<div class="sw-row"><span id="l3">Sonido al terminar</span><button class="sw" id="sw-sound" type="button" role="switch" aria-labelledby="l3"></button></div>
+<p class="note">Si el temporizador está en marcha, las nuevas duraciones se aplican desde la siguiente sesión.</p>
+<p class="err" id="err" role="alert"></p>
+<div class="actions"><button class="btn" id="cancel" type="button">Cancelar</button><button class="btn primary" id="save" type="button">Guardar</button></div>
+</form></dialog>
+<script src="app.js"></script>
+</body></html>
